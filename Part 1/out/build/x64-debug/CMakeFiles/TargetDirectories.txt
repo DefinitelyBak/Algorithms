@@ -1,0 +1,5 @@
+C:/Users/Halil/Desktop/VSproject/Algorithm/Part 1/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/Users/Halil/Desktop/VSproject/Algorithm/Part 1/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Halil/Desktop/VSproject/Algorithm/Part 1/out/build/x64-debug/Part 1/CMakeFiles/CMakeTarget.dir
+C:/Users/Halil/Desktop/VSproject/Algorithm/Part 1/out/build/x64-debug/Part 1/CMakeFiles/edit_cache.dir
+C:/Users/Halil/Desktop/VSproject/Algorithm/Part 1/out/build/x64-debug/Part 1/CMakeFiles/rebuild_cache.dir

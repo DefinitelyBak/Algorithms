@@ -1,8 +1,10 @@
+#pragma once
+
 #include <gtest/gtest.h>
 #include "Precompile.h"
 
 
-namespace Algorithm::Sort::Tests 
+namespace Algorithm::Tests 
 {
     template <typename SortFunction>
     class SortingAlgorithmTest : public ::testing::Test

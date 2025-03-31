@@ -1,6 +1,4 @@
-#pragma once
-
-#include "Precompile.h"
+#include "Sort/Include/InsertionSort.h"
 #include "Search/Include/BinarySearch.h"
 
 
@@ -37,7 +35,15 @@ namespace Algorithm::Sort
 
     /// @brief 
     /// @param arr 
-    void InsertionSort(std::vector<int>& arr);
+    void InsertionSort(std::vector<int>& arr)
+    {
+        if (arr.empty() || arr.size() == 1)
+            return;
+        
+        for (size_t i = 1; i < arr.size(); ++i)
+            for( size_t j = i; j > 0 && arr.at(j) < arr.at(j - 1); --j)
+                    std::swap(arr.at(j), arr.at(j - 1));
+    }
 
     /*
     Оптимизации.
@@ -55,5 +61,21 @@ namespace Algorithm::Sort
 
     /// @brief 
     /// @param arr 
-    void BinaryInsertionSort(std::vector<int>& arr);
+    void BinaryInsertionSort(std::vector<int>& arr)
+    {
+        if (arr.empty() || arr.size() == 1)
+            return;
+
+        std::vector<int> result;
+        for (size_t i = 0; i < arr.size(); ++i)
+        {
+            result.push_back(arr.at(i));
+            int insertIndex = Search::LeftBinarySearch(result, arr.at(i));
+
+            for (int j = result.size() - 1; j > insertIndex; --j)
+                std::swap(result[j - 1], result[j]);
+        }
+
+        arr = std::move(result);
+    }
 }

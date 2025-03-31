@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Precompile.h"
-
+#include "InsertionSort.h"
 
 namespace Algorithm::Sort
 {
@@ -15,11 +15,23 @@ namespace Algorithm::Sort
 
     Начало.
     Шаг 0. i=t.
-    Шаг 1. Разобьем массив на списки элементов, отстающих друг от друга на hi.
-           Таких списков будет hi.
+    Шаг 1. Разобьем массив на списки элементов, отстающих друг от друга на h_i.
+           Таких списков будет h_i.
     Шаг 2. Отсортируем элементы каждого списка сортировкой вставками.
     Шаг 3. Объединим списки обратно в массив. Уменьшим i. Если i
            неотрицательно — вернемся к шагу 1
     Конец.
-     */
+    */
+
+    void ClassicShellSort(std::vector<int>& arr);
+
+    /// @brief 
+    /// @param arr 
+    void NaiveShellSort(std::vector<int>& arr);
+
+    /// @brief 
+    /// @param arrays 
+    /// @return 
+    std::vector<int> Merge(const std::vector<std::vector<int>>& arrays);
+    
 }

@@ -1,6 +1,4 @@
-#pragma once
-
-#include "Precompile.h"
+#include "BinarySearch.h"
 
 
 namespace Algorithm::Search
@@ -24,13 +22,63 @@ namespace Algorithm::Search
     а возвращаемой переменной станет l.
     */
 
-    int LeftBinarySearch(const std::vector<int>& arr, int value);
+    int LeftBinarySearch(const std::vector<int>& arr, int value)
+    {
+        if (arr.empty())
+            return -1;
 
-    int RightBinarySearch(const std::vector<int>& arr, int value);
+        // Поиск левой границы
+        int left = 0;
+        int right = arr.size() - 1;
+        while (left < right)
+        {
+            int mid = left + (right - left)/2;
+            if (arr.at(mid) < value)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+
+        return left;
+    }
+
+    int RightBinarySearch(const std::vector<int>& arr, int value)
+    {
+        if (arr.empty())
+            return -1;
+
+        // Поиск правой границы
+        int left = 0;
+        int right = arr.size() - 1;
+        while (left < right)
+        {
+            int mid = left + (right - left)/2 + 1;  // Смещение вправо
+            if (arr.at(mid) > value)
+                right = mid - 1;
+            else
+                left = mid;
+        }
+
+        return right;
+    }
 
     /// @brief Алгоритм банарного поиска
     /// @param arr 
     /// @return  
-    std::pair<int, int> BinarySearch(const std::vector<int>& arr, int value);
+    std::pair<int, int> BinarySearch(const std::vector<int>& arr, int value)
+    {
+        if (arr.empty())
+            return {1, -1};
+
+        // Поиск левой границы
+        int left = LeftBinarySearch(arr, value);
+        int right = RightBinarySearch(arr, value);
+
+        if (left == -1 || right == -1 ||
+            arr.at(left) != value || arr.at(right) != value)
+            return {1, -1};
+
+        return {left, right};
+    }
 
 }

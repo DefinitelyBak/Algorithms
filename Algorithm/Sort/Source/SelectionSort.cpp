@@ -1,6 +1,4 @@
-#pragma once
-
-#include "Precompile.h"
+#include "Sort/Include/SelectionSort.h"
 
 
 namespace Algorithm::Sort
@@ -20,7 +18,19 @@ namespace Algorithm::Sort
     */
     /// @brief Сортирует выбором
     /// @param arr Входной массив
-    void SelectSortVariantOne(std::vector<int>& arr);
+    void SelectSortVariantOne(std::vector<int>& arr)
+    {
+        if (arr.empty())
+            return;
+
+        for(size_t i = 0; i < arr.size() - 1; ++i)
+        {
+            int& minValue = arr.at(i);
+            for (size_t j = i; j < arr.size(); ++j)
+                if (minValue > arr.at(j))
+                    std::swap(minValue, arr.at(j));
+        }
+    } 
 
     /*
     Вариант 2.
@@ -31,5 +41,24 @@ namespace Algorithm::Sort
     */
     /// @brief Сортирует выбором
     /// @param arr Входной массив
-    void SelectSortVariantTwo(std::vector<int>& arr);
+    void SelectSortVariantTwo(std::vector<int>& arr)
+    {
+        if (arr.empty())
+            return;
+
+        for(size_t i = 0; i < arr.size() - 1; ++i)
+        {
+            int minValue = arr.at(i);
+            int indexMinValue = i;
+
+            for (size_t j = i; j < arr.size(); ++j)
+                if(minValue > arr.at(j))
+                {
+                    minValue = arr.at(j);
+                    indexMinValue = j;
+                }
+            
+            std::swap(arr.at(i), arr.at(indexMinValue));
+        }
+    } 
 }

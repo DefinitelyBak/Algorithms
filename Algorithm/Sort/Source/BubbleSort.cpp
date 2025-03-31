@@ -1,6 +1,4 @@
-#pragma once
-
-#include "Precompile.h"
+#include "Sort/Include/BubbleSort.h"
 
 
 namespace Algorithm::Sort
@@ -19,11 +17,36 @@ namespace Algorithm::Sort
 
     /// @brief Сортирует пузырьком
     /// @param arr Входной массив
-    void BubbleSort(std::vector<int>& arr);
+    void BubbleSort(std::vector<int>& arr)
+    {
+        for (size_t i = 0; i < arr.size(); ++i)
+            for (size_t j = 0; j < arr.size() - 1; ++j)
+                if (arr.at(j) > arr.at(j + 1))
+                    std::swap(arr.at(j), arr.at(j + 1));
+    }
 
     /// @brief Сортирует пузырьком с оптимизацией
     /// @param arr Входной массив
-    void BubbleSortOptimized(std::vector<int>& arr);
+    void BubbleSortOptimized(std::vector<int>& arr)
+    {
+        if (arr.empty())
+            return;
+
+        size_t sortedEl = 0;
+        bool condition = true;
+        while(condition)
+        {
+            condition = false;
+            for(size_t j = 0; j < arr.size() - 1 - sortedEl; ++j)
+                if (arr.at(j) > arr.at(j + 1))
+                {
+                    std::swap(arr.at(j), arr.at(j + 1));
+                    condition = true;
+                }
+
+            ++sortedEl;
+        }
+    }
 
     /// Модификации
 
@@ -35,7 +58,18 @@ namespace Algorithm::Sort
     /// @param arr Входной массив
     /// @remark Преимущество этой сортировки — на нескольких процессорах она выполняется быстрее,
     ///         так как четные и нечетные индексы сортируются параллельно.
-    void OddEvenSort(std::vector<int>& arr);
+    void OddEvenSort(std::vector<int>& arr)
+    {
+        if (arr.empty())
+            return;
+
+        size_t N = arr.size();
+	    for (size_t i = 0; i < N; i++)
+	        // (i % 2) ? 1 : 0 возвращает 1, если i не четное, 0, если i четное
+		    for (size_t j = (i % 2) ? 1 : 0; j + 1 < N; j += 2)
+			    if (arr.at(j) > arr.at(j + 1))
+				    std::swap(arr.at(j), arr.at(j + 1));
+    }
 
     /*
     Сортировка расческой
@@ -48,7 +82,35 @@ namespace Algorithm::Sort
     */
     /// @brief Сортировка расческой
     /// @param arr Входной массив
-    void CombSort(std::vector<int>& arr);
+    void CombSort(std::vector<int>& arr)
+    {
+        if (arr.empty())
+            return;
+
+        const double shrink = 1.3;
+        size_t gap = arr.size();
+        bool swapped = true;
+
+        while (gap > 1 || swapped)
+        {
+            // Уменьшаем gap с учетом коэффициента
+            gap = static_cast<size_t>(gap / shrink);
+            if (gap < 1)
+                gap = 1;
+
+            swapped = false;
+        
+            // Проход по массиву с текущим gap
+            for (size_t i = 0; i < arr.size() - gap; ++i)
+            {
+                if (arr.at(i) > arr.at(i + gap))
+                {
+                    std::swap(arr.at(i), arr.at(i + gap));
+                    swapped = true;
+                }
+            }
+        }
+    }
 
     /*
     Сортировка перемешиванием
@@ -61,5 +123,43 @@ namespace Algorithm::Sort
     */
     /// @brief Сортировка перемешиванием
     /// @param arr Входной массив
-    void ShakerSort(std::vector<int>& arr);
+    void ShakerSort(std::vector<int>& arr)
+    {
+        if (arr.empty())
+            return;
+
+        int begin = -1;
+        size_t end = arr.size() - 1;
+        bool swapped = true;
+
+        while (swapped)
+        {
+            ++begin;
+            swapped = false;
+
+            for (auto i = begin; i < end; ++i)
+            {
+                if(arr.at(i) > arr.at(i + 1))
+                {
+                    std::swap(arr.at(i), arr.at(i + 1));
+                    swapped = true;
+                }
+            }
+
+            if (!swapped)
+                break;
+
+            --end;
+            swapped = false;
+
+            for (auto i = end; i > begin; --i)
+            {
+                if(arr.at(i) < arr.at(i - 1))
+                {
+                    std::swap(arr.at(i), arr.at(i - 1));
+                    swapped = true;
+                }
+            }
+        }
+    }
 }

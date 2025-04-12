@@ -23,7 +23,7 @@ namespace Algorithm::Sort
 
     void ClassicShellSort(std::vector<int>& arr)
     {
-        int n = arr.size();
+        size_t n = arr.size();
         
         // Используем последовательность Кнута (1, 4, 13, 40, 121...)
         int h = 1;

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "SearchAlgorithmTest.h"
+#include "Algorithm/SearchAlgorithmTest.h"
 #include "Search/Include/BinarySearch.h"
 
 

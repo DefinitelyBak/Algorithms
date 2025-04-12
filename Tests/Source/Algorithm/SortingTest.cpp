@@ -1,9 +1,11 @@
 #include <gtest/gtest.h>
-#include "SortingAlgorithmTest.h"
+#include "Algorithm/SortingAlgorithmTest.h"
 #include "Sort/include/BubbleSort.h"
 #include "Sort/include/SelectionSort.h"
 #include "Sort/include/InsertionSort.h"
 #include "Sort/Include/ShellSort.h"
+#include "Sort/Include/MergeSort.h"
+#include "Sort/Include/QuickSort.h"
 
 
 namespace Algorithm::Tests
@@ -67,6 +69,7 @@ namespace Algorithm::Tests
         TestSorting(BinaryInsertionSort);
     }
     
+    /// Shell sort
     using ClassicShellSortTest = SortingAlgorithmTest<decltype(&ClassicShellSort)>;
     TEST_F(ClassicShellSortTest, SortsCorrectly)
     {
@@ -77,6 +80,20 @@ namespace Algorithm::Tests
     TEST_F(NaiveShellSortTest, SortsCorrectly)
     {
         TestSorting(NaiveShellSort);
+    }
+
+    /// Merge sort
+    using MergeSortTest = SortingAlgorithmTest<decltype(&MergeSort)>;
+    TEST_F(MergeSortTest, SortsCorrectly)
+    {
+        TestSorting(MergeSort);
+    }
+
+    /// Quick sort
+    using QuickSortTest = SortingAlgorithmTest<decltype(&QuickSort)>;
+    TEST_F(QuickSortTest, SortsCorrectly)
+    {
+        TestSorting(QuickSort);
     }
     
 }

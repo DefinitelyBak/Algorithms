@@ -16,25 +16,25 @@ enable_testing()
 
 set(AlgorithmSources 
     ${CMAKE_SOURCE_DIR}/Algorithm/Precompile.cpp
-    ${CMAKE_SOURCE_DIR}/Algorithm/Search/Source/BinarySearch.cpp
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Source/BubbleSort.cpp 
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Source/InsertionSort.cpp
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Source/MergeSort.cpp
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Source/SelectionSort.cpp
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Source/ShellSort.cpp
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Source/QuickSort.cpp
-    ${CMAKE_SOURCE_DIR}/Tests/Source/Algorithm/SortingTest.cpp
-    ${CMAKE_SOURCE_DIR}/Tests/Source/Algorithm/SearchTest.cpp
-    ${CMAKE_SOURCE_DIR}/Tests/Source/CommonFunctions.cpp)
+    ${CMAKE_SOURCE_DIR}/Algorithm/Search/BinarySearch.cpp
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/BubbleSort.cpp 
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/InsertionSort.cpp
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/MergeSort.cpp
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/SelectionSort.cpp
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/ShellSort.cpp
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/QuickSort.cpp
+    ${CMAKE_SOURCE_DIR}/Tests/Algorithm/SortingTest.cpp
+    ${CMAKE_SOURCE_DIR}/Tests/Algorithm/SearchTest.cpp
+    ${CMAKE_SOURCE_DIR}/Tests/CommonFunctions.cpp)
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${AlgorithmSources})
 
 add_executable(AlgorithmTests ${AlgorithmSources})
 
 target_include_directories(AlgorithmTests PRIVATE
     ${CMAKE_SOURCE_DIR}/Algorithm
-    ${CMAKE_SOURCE_DIR}/Algorithm/Search/Include
-    ${CMAKE_SOURCE_DIR}/Algorithm/Sort/Include
-    ${CMAKE_SOURCE_DIR}/Tests/Include)
+    ${CMAKE_SOURCE_DIR}/Algorithm/Search
+    ${CMAKE_SOURCE_DIR}/Algorithm/Sort
+    ${CMAKE_SOURCE_DIR}/Tests)
 
 target_link_libraries(
   AlgorithmTests

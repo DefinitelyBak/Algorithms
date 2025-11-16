@@ -35,6 +35,6 @@ CMakePresets.json
 
 /.vs
 /.vscode
-/build
+*/build
 /bin
 /out

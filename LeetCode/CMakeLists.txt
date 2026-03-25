@@ -1,1 +1,0 @@
-add_executable(test 40.cpp)

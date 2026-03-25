@@ -1,0 +1,22 @@
+\paragraph{Задачи}
+\subparagraph{A.1. Оценка сумм}
+
+Дайте асимптотически точные оценки приведённых ниже сумм. Считаем, что $r \geq  0$ и $r \geq 0$ представляют собой константы
+
+а) $\sum_{k=1}^{n} {k^r}$
+\begin{gather*}
+\int_{0}^{n} {x^rdx} \leq \sum_{k=1}^{n} {k^r} \leq \int_{1}^{n+1} {x^rdx} \\
+\int_{0}^{n} {x^rdx} = \frac{n^{r+1}}{r+1} \\
+\int_{1}^{n+1} {x^rdx} = \frac{(n+1)^{r+1}}{r+1} - \frac{1}{r+1} \\
+\frac{n^{r+1}}{r+1} \leq \sum_{k=1}^{n} {k^r} \leq \frac{(n+1)^{r+1}}{r+1} - \frac{1}{r+1} \\
+\sum_{k=1}^{n} {k^r} = \Theta(n^{r+1})
+\end{gather*}
+
+б)$\sum_{k=1}^{n}{(\lg{k})^s}$
+\begin{gather*}
+\sum_{k=1}^{n}{(\lg{k})^s} = (\lg{1})^s + \sum_{k=2}^{n}{(\lg{k})^s} = 0 + \sum_{k=2}^{n}{(\lg{k})^s}\\
+\int_{1}^{n} {(\lg{x})^s} \leq \sum_{k=2}^{n}{(\lg{k})^s} \leq \int_{2}^{n+1} {(\lg{x})^s} \\
+int_{1}^{n} {(\lg{x})^s}
+\end{gather*}
+
+в)$\sum_{k=1}^{n}{k^r(\lg{k})^s}$

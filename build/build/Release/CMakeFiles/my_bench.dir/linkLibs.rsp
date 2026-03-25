@@ -1,0 +1,1 @@
+  -LD:/.c2/p/b/bench40d9ef236c168/p/lib  D:/.c2/p/b/bench40d9ef236c168/p/lib/libbenchmark_main.a D:/.c2/p/b/bench40d9ef236c168/p/lib/libbenchmark.a -lshlwapi -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

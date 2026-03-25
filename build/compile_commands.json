@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/Projects/Algorithms/build",
+  "command": "D:\\Programs\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\Algorithm.dir\\main.cpp.obj -c D:\\Projects\\Algorithms\\main.cpp",
+  "file": "D:/Projects/Algorithms/main.cpp",
+  "output": "CMakeFiles/Algorithm.dir/main.cpp.obj"
+}
+]

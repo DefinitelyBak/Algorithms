@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.20)  25 MAR 2026 20:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.20)  26 MAR 2026 21:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/User/Desktop/Solving problems from Korman/main.tex"
-(c:/Users/User/Desktop/Solving problems from Korman/main.tex
+**d:/Projects/Algorithms/clrsSolutions/main.tex
+(d:/Projects/Algorithms/clrsSolutions/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (D:\Programs\MikTeX\tex/latex/base\article.cls
@@ -454,24 +454,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--35
 
  []
 
-[10] [11]) (Tasks2.tex [12])) [13] (main.aux)
+[10] [11]) (Tasks2.tex [12] [13]
+Overfull \hbox (2.59648pt too wide) in paragraph at lines 70--72
+ \T2A/cmr/bx/n/10.95 2.2. Кор-рект-ность пу-зырь-ко-вой сор-ти-ров-ки[] \T2A/cmr/m/n/10.95 Пу-зырь-ко-вая сор-
+ []
+
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 73.
+(D:\Programs\MikTeX\tex/latex/cyrillic\t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+) [14] [15] [16])) [17] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3830 strings out of 467867
- 58291 string characters out of 5430843
+ 3853 strings out of 467867
+ 58805 string characters out of 5430843
  474021 words of memory out of 5000000
- 32679 multiletter control sequences out of 15000+600000
- 639964 words of font info for 68 fonts, out of 8000000 for 9000
+ 32699 multiletter control sequences out of 15000+600000
+ 639531 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,11n,65p,1408b,204s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (13 pages, 195496 bytes).
+ 56i,11n,65p,624b,229s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on main.pdf (17 pages, 221189 bytes).
 PDF statistics:
- 319 PDF objects out of 1000 (max. 8388607)
+ 380 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

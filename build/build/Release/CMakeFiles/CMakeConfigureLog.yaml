@@ -6341,3 +6341,267 @@ events:
         - "D:/Programs/CMake/bin"
         - "/bin"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "build/build/Release/generators/cmakedeps_macros.cmake:32 (find_library)"
+      - "build/build/Release/generators/benchmark-Target-release.cmake:23 (conan_package_library_targets)"
+      - "build/build/Release/generators/benchmarkTargets.cmake:24 (include)"
+      - "build/build/Release/generators/benchmark-config.cmake:16 (include)"
+      - "CMakeLists.txt:7 (find_package)"
+    mode: "library"
+    variable: "CONAN_FOUND_LIBRARY"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "benchmark_main"
+    candidate_directories:
+      - "D:/.c2/p/b/bench40d9ef236c168/p/lib/"
+    found: "D:/.c2/p/b/bench40d9ef236c168/p/lib/libbenchmark_main.a"
+    search_context:
+      CMAKE_LIBRARY_PATH:
+        - "D:/.c2/p/b/bench40d9ef236c168/p/lib"
+        - "D:/.c2/p/b/gtestaafefaf1527f5/p/lib"
+      CMAKE_PREFIX_PATH:
+        - "D:/Projects/Algorithms/build/build/Release/generators"
+      ENV{PATH}:
+        - "D:\\Programs\\msys64\\ucrt64\\bin"
+        - "C:\\Program Files (x86)\\Razer\\ChromaBroadcast\\bin"
+        - "C:\\Program Files\\Razer\\ChromaBroadcast\\bin"
+        - "D:\\Work\\Tools\\Python37\\Scripts\\"
+        - "D:\\Work\\Tools\\Python37\\"
+        - "C:\\Windows\\System32\\AMD"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Cmake\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "D:\\Work\\Tools\\PostgreSQL\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Git\\cmd"
+        - "D:\\Programs\\MikTeX\\miktex\\bin\\x64\\"
+        - "D:\\Programs\\Strawberry\\c\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\site\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\bin"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Microsoft VS Code\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Programs/CMake"
+        - "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "C:/Program Files (x86)/Algorithm/bin"
+        - "D:/Programs/CMake/bin"
+        - "/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "build/build/Release/generators/cmakedeps_macros.cmake:32 (find_library)"
+      - "build/build/Release/generators/benchmark-Target-release.cmake:23 (conan_package_library_targets)"
+      - "build/build/Release/generators/benchmarkTargets.cmake:24 (include)"
+      - "build/build/Release/generators/benchmark-config.cmake:16 (include)"
+      - "CMakeLists.txt:7 (find_package)"
+    mode: "library"
+    variable: "CONAN_FOUND_LIBRARY"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "benchmark"
+    candidate_directories:
+      - "D:/.c2/p/b/bench40d9ef236c168/p/lib/"
+    found: "D:/.c2/p/b/bench40d9ef236c168/p/lib/libbenchmark.a"
+    search_context:
+      CMAKE_LIBRARY_PATH:
+        - "D:/.c2/p/b/bench40d9ef236c168/p/lib"
+        - "D:/.c2/p/b/gtestaafefaf1527f5/p/lib"
+      CMAKE_PREFIX_PATH:
+        - "D:/Projects/Algorithms/build/build/Release/generators"
+      ENV{PATH}:
+        - "D:\\Programs\\msys64\\ucrt64\\bin"
+        - "C:\\Program Files (x86)\\Razer\\ChromaBroadcast\\bin"
+        - "C:\\Program Files\\Razer\\ChromaBroadcast\\bin"
+        - "D:\\Work\\Tools\\Python37\\Scripts\\"
+        - "D:\\Work\\Tools\\Python37\\"
+        - "C:\\Windows\\System32\\AMD"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Cmake\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "D:\\Work\\Tools\\PostgreSQL\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Git\\cmd"
+        - "D:\\Programs\\MikTeX\\miktex\\bin\\x64\\"
+        - "D:\\Programs\\Strawberry\\c\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\site\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\bin"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Microsoft VS Code\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Programs/CMake"
+        - "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "C:/Program Files (x86)/Algorithm/bin"
+        - "D:/Programs/CMake/bin"
+        - "/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "build/build/Release/generators/cmakedeps_macros.cmake:32 (find_library)"
+      - "build/build/Release/generators/benchmark-Target-release.cmake:60 (conan_package_library_targets)"
+      - "build/build/Release/generators/benchmarkTargets.cmake:24 (include)"
+      - "build/build/Release/generators/benchmark-config.cmake:16 (include)"
+      - "CMakeLists.txt:7 (find_package)"
+    mode: "library"
+    variable: "CONAN_FOUND_LIBRARY"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "benchmark_main"
+    candidate_directories:
+      - "D:/.c2/p/b/bench40d9ef236c168/p/lib/"
+    found: "D:/.c2/p/b/bench40d9ef236c168/p/lib/libbenchmark_main.a"
+    search_context:
+      CMAKE_LIBRARY_PATH:
+        - "D:/.c2/p/b/bench40d9ef236c168/p/lib"
+        - "D:/.c2/p/b/gtestaafefaf1527f5/p/lib"
+      CMAKE_PREFIX_PATH:
+        - "D:/Projects/Algorithms/build/build/Release/generators"
+      ENV{PATH}:
+        - "D:\\Programs\\msys64\\ucrt64\\bin"
+        - "C:\\Program Files (x86)\\Razer\\ChromaBroadcast\\bin"
+        - "C:\\Program Files\\Razer\\ChromaBroadcast\\bin"
+        - "D:\\Work\\Tools\\Python37\\Scripts\\"
+        - "D:\\Work\\Tools\\Python37\\"
+        - "C:\\Windows\\System32\\AMD"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Cmake\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "D:\\Work\\Tools\\PostgreSQL\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Git\\cmd"
+        - "D:\\Programs\\MikTeX\\miktex\\bin\\x64\\"
+        - "D:\\Programs\\Strawberry\\c\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\site\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\bin"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Microsoft VS Code\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Programs/CMake"
+        - "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "C:/Program Files (x86)/Algorithm/bin"
+        - "D:/Programs/CMake/bin"
+        - "/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "build/build/Release/generators/cmakedeps_macros.cmake:32 (find_library)"
+      - "build/build/Release/generators/benchmark-Target-release.cmake:120 (conan_package_library_targets)"
+      - "build/build/Release/generators/benchmarkTargets.cmake:24 (include)"
+      - "build/build/Release/generators/benchmark-config.cmake:16 (include)"
+      - "CMakeLists.txt:7 (find_package)"
+    mode: "library"
+    variable: "CONAN_FOUND_LIBRARY"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "benchmark"
+    candidate_directories:
+      - "D:/.c2/p/b/bench40d9ef236c168/p/lib/"
+    found: "D:/.c2/p/b/bench40d9ef236c168/p/lib/libbenchmark.a"
+    search_context:
+      CMAKE_LIBRARY_PATH:
+        - "D:/.c2/p/b/bench40d9ef236c168/p/lib"
+        - "D:/.c2/p/b/gtestaafefaf1527f5/p/lib"
+      CMAKE_PREFIX_PATH:
+        - "D:/Projects/Algorithms/build/build/Release/generators"
+      ENV{PATH}:
+        - "D:\\Programs\\msys64\\ucrt64\\bin"
+        - "C:\\Program Files (x86)\\Razer\\ChromaBroadcast\\bin"
+        - "C:\\Program Files\\Razer\\ChromaBroadcast\\bin"
+        - "D:\\Work\\Tools\\Python37\\Scripts\\"
+        - "D:\\Work\\Tools\\Python37\\"
+        - "C:\\Windows\\System32\\AMD"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Cmake\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "D:\\Work\\Tools\\PostgreSQL\\bin"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Git\\cmd"
+        - "D:\\Programs\\MikTeX\\miktex\\bin\\x64\\"
+        - "D:\\Programs\\Strawberry\\c\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\site\\bin"
+        - "D:\\Programs\\Strawberry\\perl\\bin"
+        - "C:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Programs\\Microsoft VS Code\\bin"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "D:/Programs/CMake"
+        - "C:/Program Files (x86)/Algorithm"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "C:/Program Files (x86)/Algorithm/bin"
+        - "D:/Programs/CMake/bin"
+        - "/bin"
+...

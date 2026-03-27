@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.20)  26 MAR 2026 21:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.16)  27 MAR 2026 19:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/Projects/Algorithms/clrsSolutions/main.tex
-(d:/Projects/Algorithms/clrsSolutions/main.tex
+**c:/Users/Bakulev/Desktop/Algorithms/clrsSolutions/main.tex
+(c:/Users/Bakulev/Desktop/Algorithms/clrsSolutions/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
-(D:\Programs\MikTeX\tex/latex/base\article.cls
+(C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(D:\Programs\MikTeX\tex/latex/base\size11.clo
+(C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
 File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count275
@@ -23,17 +23,17 @@ File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
-) (D:\Programs\MikTeX\tex/latex/base\inputenc.sty
+) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-) (D:\Programs\MikTeX\tex/latex/base\fontenc.sty
+) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
- (D:\Programs\MikTeX\tex/latex/cyrillic\t2aenc.def
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2aenc.def
 File: t2aenc.def 2023/11/07 v1.0k Cyrillic encoding definition file
 Now handling font encoding T2A ...
 ... processing UTF-8 mapping file for font encoding T2A
- (D:\Programs\MikTeX\tex/latex/base\t2aenc.dfu
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/base\t2aenc.dfu
 File: t2aenc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A4 (decimal 164)
    defining Unicode char U+00A7 (decimal 167)
@@ -235,9 +235,9 @@ File: t2aenc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+FB06 (decimal 64262)
 ))
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 116.
- (D:\Programs\MikTeX\tex/latex/cyrillic\t2acmr.fd
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmr.fd
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)) (D:\Programs\MikTeX\tex/generic/babel\babel.sty
+)) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2026/03/08 v26.4 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
 \babel@savecnt=\count283
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2078.
@@ -249,7 +249,7 @@ LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) o
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2111.
 \U@D=\dimen149
 \l@unhyphenated=\language79
- (D:\Programs\MikTeX\tex/generic/babel\txtbabel.def)
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count284
 Package babel Info: Configuration files are deprecated, as
@@ -259,19 +259,19 @@ Package babel Info: Configuration files are deprecated, as
 *************************************
 * Local config file bblopts.cfg used
 *
-(D:\Programs\MikTeX\tex/latex/arabi\bblopts.cfg
+(C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of babel
-) (D:\Programs\MikTeX\tex/generic/babel/locale/ru\babel-russian.tex)
+) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/ru\babel-russian.tex)
 Package babel Info: Importing font and identification data for russian
 (babel)             from babel-ru.ini. Reported on input line 4330.
- (D:\Programs\MikTeX\tex/latex/babel-russian\russianb.ldf
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/babel-russian\russianb.ldf
 File: russianb.ldf 2021/01/10 1.3m Russian support for the Babel system
 Language: russian 2020/09/09 1.3k Russian support for the Babel system
 Package babel Info: Making " an active character on input line 124.
 Package babel Info: Default for \cyrdash is provided on input line 163.
-)) (D:\Programs\MikTeX\tex/latex/amsfonts\amssymb.sty
+)) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (D:\Programs\MikTeX\tex/latex/amsfonts\amsfonts.sty
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks19
 \symAMSa=\mathgroup4
@@ -279,21 +279,21 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (D:\Programs\MikTeX\tex/latex/amsmath\amsmath.sty
+)) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
-(D:\Programs\MikTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
- (D:\Programs\MikTeX\tex/latex/amsmath\amsgen.sty
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks20
 \ex@=\dimen150
-)) (D:\Programs\MikTeX\tex/latex/amsmath\amsbsy.sty
+)) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen151
-) (D:\Programs\MikTeX\tex/latex/amsmath\amsopn.sty
+) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count285
@@ -343,7 +343,7 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
-) (D:\Programs\MikTeX\tex/latex/l3backend\l3backend-pdftex.def
+) (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count297
 ) (main.aux
@@ -371,11 +371,11 @@ LaTeX Font Info:    ... okay on input line 8.
 LaTeX Info: Redefining \th on input line 8.
  (A.tex (A1.tex
 LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
- (D:\Programs\MikTeX\tex/latex/amsfonts\umsa.fd
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
- (D:\Programs\MikTeX\tex/latex/amsfonts\umsb.fd
+ (C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 Overfull \hbox (14.79008pt too wide) in paragraph at lines 21--22
@@ -384,7 +384,7 @@ Overfull \hbox (14.79008pt too wide) in paragraph at lines 21--22
 
 [1
 
-{C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]) (A2.tex [3] [4]) (TasksA.tex)) (Chapter2.tex [5] (2.1.tex
+{C:/Users/Bakulev/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]) (A2.tex [3] [4]) (TasksA.tex)) (Chapter2.tex [5] (2.1.tex
 Underfull \hbox (badness 10000) in paragraph at lines 6--18
 
  []
@@ -460,26 +460,36 @@ Overfull \hbox (2.59648pt too wide) in paragraph at lines 70--72
  []
 
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 73.
-(D:\Programs\MikTeX\tex/latex/cyrillic\t2acmtt.fd
+(C:\Users\Bakulev\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [14] [15] [16])) [17] (main.aux)
+) [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 221--223
+
+ []
+
+[17] [18])) (Chapter3.tex (3.1.tex [19]
+Overfull \hbox (186.20816pt too wide) detected at line 40
+\OML/cmm/m/it/10.95 O\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n; m\OT1/cmr/m/n/10.95 )) = \OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n; m\OT1/cmr/m/n/10.95 ) : []\OML/cmm/m/it/10.95 c; n[][]m[]; []\OT1/cmr/m/n/10.95 0 \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n; m\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^T \OML/cmm/m/it/10.95 cg\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n; m\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 g
+ []
+
+)) [20] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3853 strings out of 467867
- 58805 string characters out of 5430843
+ 3867 strings out of 467866
+ 60780 string characters out of 5417345
  474021 words of memory out of 5000000
- 32699 multiletter control sequences out of 15000+600000
+ 32708 multiletter control sequences out of 15000+600000
  639531 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,11n,65p,624b,229s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MikTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (17 pages, 221189 bytes).
+ 56i,11n,65p,637b,229s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Bakulev\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1095.pk> <C:\Users\Bakulev\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1095.pk> <C:\Users\Bakulev\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\Bakulev\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1095.pk> <C:\Users\Bakulev\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1095.pk> <C:\Users\Bakulev\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Bakulev/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on main.pdf (20 pages, 231418 bytes).
 PDF statistics:
- 380 PDF objects out of 1000 (max. 8388607)
+ 397 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

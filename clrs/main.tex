@@ -3,6 +3,20 @@
 \usepackage[T1,T2A]{fontenc}
 \usepackage[russian]{babel}
 \usepackage{amssymb, amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    frame=single,
+    breaklines=true
+}
+
 \frenchspacing
 \pagestyle{plain}
 \begin{document}
@@ -10,4 +24,5 @@
 \input{Appendices/B}
 \input{Chapter02/Chapter2}
 \input{Chapter03/Chapter3}
+\input{Chapter04/Chapter4}
 \end{document}

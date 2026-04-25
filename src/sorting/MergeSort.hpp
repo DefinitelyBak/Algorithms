@@ -52,4 +52,4 @@ namespace Algorithms::Sorting
             std::move(buffer.begin(), buffer.begin() + k, array.begin() + start);
         }
     };
-}
+} // namespace Algorithms::Sorting

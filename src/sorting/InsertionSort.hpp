@@ -23,4 +23,4 @@ namespace Algorithms::Sorting
             }
         }
     };
-}
+} // namespace Algorithms::Sorting

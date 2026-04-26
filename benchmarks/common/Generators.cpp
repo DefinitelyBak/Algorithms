@@ -29,4 +29,17 @@ namespace Algorithms::Benchmarks::Common
         std::reverse(result.begin(), result.end());
         return result;
     }
+
+    Math::Matrix<int> CreateRandomMatrix(size_t rows, size_t cols)
+    {
+        static std::random_device rd;
+        static std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(1, 10);
+
+        Math::Matrix<int> m(rows, cols);
+        for (size_t i = 0; i < rows; ++i)
+            for (size_t j = 0; j < cols; ++j)
+                m(i, j) = dis(gen);
+        return m;
+    }
 }

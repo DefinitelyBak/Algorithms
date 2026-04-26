@@ -1,6 +1,3 @@
-// Hello world!
-
-
 #pragma once
 
 #include <cassert>
@@ -18,14 +15,14 @@ namespace Algorithms::Math
     class Matrix;
 
     template <typename M>
-    concept RealMatrix = requires { typename std::decay_t<M>::is_real_matrix; };
+    concept RealMatrix = requires { typename std::remove_cvref_t<M>::is_real_matrix; };
 
     template <typename M>
-    concept MatrixLike = requires(const std::decay_t<M>& m, size_t i, size_t j) {
-        typename std::decay_t<M>::value_type;
-        { m.rows() } -> std::convertible_to<size_t>;
-        { m.cols() } -> std::convertible_to<size_t>;
-        { m(i, j) } -> std::convertible_to<typename std::decay_t<M>::value_type>;
+    concept MatrixLike = requires(const std::remove_cvref_t<M>& m, size_t i, size_t j) {
+        typename std::remove_cvref_t<M>::value_type;
+        { m.Rows() } -> std::convertible_to<size_t>;
+        { m.Cols() } -> std::convertible_to<size_t>;
+        { m(i, j) } -> std::convertible_to<typename std::remove_cvref_t<M>::value_type>;
     };
 
     template <RealMatrix T>
@@ -33,72 +30,78 @@ namespace Algorithms::Math
     {
     public:
         using is_real_matrix = std::true_type;
-        using value_type = typename T::value_type;
+        using value_type = typename std::remove_cvref_t<T>::value_type;
+        using reference = value_type&;
+        using const_reference = const value_type&;
 
-        Submatrix(T& matrix, size_t row_start, size_t col_start, size_t row_count, size_t col_count)
+        Submatrix(T& matrix, size_t rowStart, size_t colStart, size_t rowCount, size_t colCount)
             : _matrix(matrix),
-              _row_start(row_start),
-              _col_start(col_start),
-              _row_count(row_count),
-              _col_count(col_count)
+              _rowStart(rowStart),
+              _colStart(colStart),
+              _rowCount(rowCount),
+              _colCount(colCount)
         {
-            assert(_row_start + _row_count <= _matrix.rows());
-            assert(_col_start + _col_count <= _matrix.cols());
+            assert(_rowStart + _rowCount <= _matrix.Rows());
+            assert(_colStart + _colCount <= _matrix.Cols());
         }
 
         template <typename OtherT>
-        Submatrix(Submatrix<OtherT>& other, size_t row_start, size_t col_start, size_t row_count,
-            size_t col_count)
+        Submatrix(const Submatrix<OtherT>& other, size_t rowStart, size_t colStart, size_t rowCount,
+            size_t colCount)
             : _matrix(other._matrix),
-              _row_start(other._row_start + row_start),
-              _col_start(other._col_start + col_start),
-              _row_count(row_count),
-              _col_count(col_count)
+              _rowStart(other._rowStart + rowStart),
+              _colStart(other._colStart + colStart),
+              _rowCount(rowCount),
+              _colCount(colCount)
         {
-            assert(row_start + row_count <= other.rows());
-            assert(col_start + col_count <= other.cols());
+            assert(rowStart + rowCount <= other.Rows());
+            assert(colStart + colCount <= other.Cols());
         }
 
         template <MatrixLike Other>
         Submatrix& operator=(const Other& other)
         {
-            assert(other.rows() == _row_count);
-            assert(other.cols() == _col_count);
-            for (size_t i = 0; i < _row_count; ++i)
-                for (size_t j = 0; j < _col_count; ++j)
+            assert(other.Rows() == _rowCount);
+            assert(other.Cols() == _colCount);
+            for (size_t i = 0; i < _rowCount; ++i)
+                for (size_t j = 0; j < _colCount; ++j)
                     (*this)(i, j) = other(i, j);
             return *this;
         }
 
-        size_t rows() const { return _row_count; }
-        size_t cols() const { return _col_count; }
+        size_t Rows() const { return _rowCount; }
+        size_t Cols() const { return _colCount; }
 
-        const value_type& operator()(size_t i, size_t j) const
+        const_reference operator()(size_t i, size_t j) const
         {
-            return _matrix(_row_start + i, _col_start + j);
+            return _matrix(_rowStart + i, _colStart + j);
         }
 
-        value_type& operator()(size_t i, size_t j)
+        reference operator()(size_t i, size_t j)
             requires(!std::is_const_v<T>)
         {
-            return _matrix(_row_start + i, _col_start + j);
+            return _matrix(_rowStart + i, _colStart + j);
         }
 
-        auto submatrix(size_t r_s, size_t c_s, size_t r_c, size_t c_c)
+        auto Slice(size_t rowStart, size_t colStart, size_t rowCount, size_t colCount)
         {
-            return Submatrix<T>(*this, r_s, c_s, r_c, c_c);
+            assert(rowStart + rowCount <= Rows());
+            assert(colStart + colCount <= Cols());
+            return Submatrix<T>(*this, rowStart, colStart, rowCount, colCount);
         }
 
-        auto submatrix(size_t r_s, size_t c_s, size_t r_c, size_t c_c) const
+        auto Slice(size_t rowStart, size_t colStart, size_t rowCount, size_t colCount) const
         {
-            return Submatrix<std::add_const_t<Matrix<T>>>(*this, r_s, c_s, r_c, c_c);
+            assert(rowStart + rowCount <= Rows());
+            assert(colStart + colCount <= Cols());
+            return Submatrix<std::add_const_t<T>>(*this, rowStart, colStart, rowCount, colCount);
         }
 
     private:
         template <RealMatrix U>
         friend class Submatrix;
         T& _matrix;
-        const size_t _row_start, _col_start, _row_count, _col_count;
+        const size_t _rowStart, _colStart, _rowCount, _colCount;
     };
 
     template <typename T>
@@ -107,6 +110,8 @@ namespace Algorithms::Math
     public:
         using is_real_matrix = std::true_type;
         using value_type = T;
+        using reference = value_type&;
+        using const_reference = const value_type&;
 
         Matrix(size_t rows, size_t cols) : _rows(rows), _cols(cols), _data(rows * cols) {}
 
@@ -125,31 +130,36 @@ namespace Algorithms::Math
         }
 
         template <MatrixLike Other>
-        Matrix(const Other& other) : _rows(other.rows()), _cols(other.cols()), _data(_rows * _cols)
+        Matrix(const Other& other) : _rows(other.Rows()), _cols(other.Cols()), _data(_rows * _cols)
         {
             for (size_t i = 0; i < _rows; ++i)
                 for (size_t j = 0; j < _cols; ++j)
                     (*this)(i, j) = other(i, j);
         }
 
-        size_t rows() const { return _rows; }
-        size_t cols() const { return _cols; }
+        size_t Rows() const { return _rows; }
+        size_t Cols() const { return _cols; }
 
-        value_type& operator()(size_t i, size_t j)
+        reference operator()(size_t i, size_t j)
             requires(!std::is_const_v<T>)
         {
             return _data[i * _cols + j];
         }
-        const value_type& operator()(size_t i, size_t j) const { return _data[i * _cols + j]; }
+        const_reference operator()(size_t i, size_t j) const { return _data[i * _cols + j]; }
 
-        auto submatrix(size_t r_s, size_t c_s, size_t r_c, size_t c_c)
+        auto Slice(size_t rowStart, size_t colStart, size_t rowCount, size_t colCount)
         {
-            return Submatrix<Matrix<T>>(*this, r_s, c_s, r_c, c_c);
+            assert(rowStart + rowCount <= Rows());
+            assert(colStart + colCount <= Cols());
+            return Submatrix<Matrix<T>>(*this, rowStart, colStart, rowCount, colCount);
         }
 
-        auto submatrix(size_t r_s, size_t c_s, size_t r_c, size_t c_c) const
+        auto Slice(size_t rowStart, size_t colStart, size_t rowCount, size_t colCount) const
         {
-            return Submatrix<std::add_const_t<Matrix<T>>>(*this, r_s, c_s, r_c, c_c);
+            assert(rowStart + rowCount <= Rows());
+            assert(colStart + colCount <= Cols());
+            return Submatrix<std::add_const_t<Matrix<T>>>(
+                *this, rowStart, colStart, rowCount, colCount);
         }
 
     private:
@@ -163,8 +173,11 @@ namespace Algorithms::Math
     public:
         using is_real_matrix = std::true_type;
         using value_type = T;
+        using reference = value_type&;
+        using const_reference = const value_type&;
+        using pointer = value_type*;
 
-        BufferMatrix(value_type* buffer, size_t rows, size_t cols)
+        BufferMatrix(pointer buffer, size_t rows, size_t cols)
             : _buffer(buffer), _rows(rows), _cols(cols)
         {
         }
@@ -172,38 +185,43 @@ namespace Algorithms::Math
         template <MatrixLike Other>
         BufferMatrix& operator=(const Other& other)
         {
-            assert(_rows == other.rows());
-            assert(_cols == other.cols());
+            assert(_rows == other.Rows());
+            assert(_cols == other.Cols());
             for (size_t i = 0; i < _rows; ++i)
                 for (size_t j = 0; j < _cols; ++j)
                     (*this)(i, j) = other(i, j);
             return *this;
         }
 
-        size_t rows() const { return _rows; }
-        size_t cols() const { return _cols; }
+        size_t Rows() const { return _rows; }
+        size_t Cols() const { return _cols; }
 
-        value_type& operator()(size_t i, size_t j)
+        reference operator()(size_t i, size_t j)
             requires(!std::is_const_v<T>)
         {
             return _buffer[i * _cols + j];
         }
-        const value_type& operator()(size_t i, size_t j) const { return _buffer[i * _cols + j]; }
+        const_reference operator()(size_t i, size_t j) const { return _buffer[i * _cols + j]; }
 
-        auto submatrix(size_t r_s, size_t c_s, size_t r_c, size_t c_c)
+        auto Slice(size_t rowStart, size_t colStart, size_t rowCount, size_t colCount)
         {
-            return Submatrix<BufferMatrix<T>>(*this, r_s, c_s, r_c, c_c);
+            assert(rowStart + rowCount <= Rows());
+            assert(colStart + colCount <= Cols());
+            return Submatrix<BufferMatrix<T>>(*this, rowStart, colStart, rowCount, colCount);
         }
 
-        auto submatrix(size_t r_s, size_t c_s, size_t r_c, size_t c_c) const
+        auto Slice(size_t rowStart, size_t colStart, size_t rowCount, size_t colCount) const
         {
-            return Submatrix<std::add_const_t<Matrix<T>>>(*this, r_s, c_s, r_c, c_c);
+            assert(rowStart + rowCount <= Rows());
+            assert(colStart + colCount <= Cols());
+            return Submatrix<std::add_const_t<BufferMatrix<T>>>(
+                *this, rowStart, colStart, rowCount, colCount);
         }
 
     private:
         size_t _rows;
         size_t _cols;
-        value_type* _buffer;
+        pointer _buffer;
     };
 
     template <typename T>
@@ -215,126 +233,139 @@ namespace Algorithms::Math
 
         ScalarWrapper(T val) : _val(val) {}
 
-        size_t rows() const { return 0; }
-        size_t cols() const { return 0; }
+        size_t Rows() const { return 0; }
+        size_t Cols() const { return 0; }
         value_type operator()(size_t, size_t) const { return _val; }
 
     private:
         value_type _val;
     };
 
-    template <typename T>
-    inline constexpr bool is_scalar_v =
-        requires { typename std::decay_t<T>::is_scalar_expression; };
-
-    template <typename Op, typename Lhs, typename Rhs>
-    class MatrixBinaryOp
+    template <typename Lhs, typename Rhs, typename Policy>
+    class MatrixExpression
     {
         template <typename T>
         struct Storage
         {
-            using Decayed = std::decay_t<T>;
-            using type = std::conditional_t<std::is_lvalue_reference_v<T>, const Decayed&, Decayed>;
+            using type = std::conditional_t<std::is_lvalue_reference_v<T>,
+                const std::remove_cvref_t<T>&, std::remove_cvref_t<T>>;
         };
 
     public:
         using LhsStorage = typename Storage<Lhs>::type;
         using RhsStorage = typename Storage<Rhs>::type;
-        using value_type = typename std::decay_t<Lhs>::value_type;
+        using value_type = typename std::remove_cvref_t<Lhs>::value_type;
 
-        MatrixBinaryOp(Lhs&& lhs, Rhs&& rhs)
+        MatrixExpression(Lhs&& lhs, Rhs&& rhs)
             : _lhs(std::forward<Lhs>(lhs)), _rhs(std::forward<Rhs>(rhs))
         {
-            if constexpr (!is_scalar_v<Lhs> && !is_scalar_v<Rhs>)
-            {
-                assert(_lhs.rows() == _rhs.rows());
-                assert(_lhs.cols() == _rhs.cols());
-            }
+            Policy::ValidateDimensions(_lhs, _rhs);
         }
 
-        size_t rows() const
-        {
-            if constexpr (is_scalar_v<Lhs>)
-                return _rhs.rows();
-            else
-                return _lhs.rows();
-        }
+        size_t Rows() const { return Policy::GetRows(_lhs, _rhs); }
+        size_t Cols() const { return Policy::GetCols(_lhs, _rhs); }
 
-        size_t cols() const
-        {
-            if constexpr (is_scalar_v<Lhs>)
-                return _rhs.cols();
-            else
-                return _lhs.cols();
-        }
+        value_type operator()(size_t i, size_t j) const { return Policy::Apply(_lhs, _rhs, i, j); }
 
-        value_type operator()(size_t i, size_t j) const { return Op{}(_lhs(i, j), _rhs(i, j)); }
-
-        Matrix<value_type> eval() const { return Matrix<value_type>(*this); }
+        Matrix<value_type> Eval() const { return Matrix<value_type>(*this); }
 
     private:
         LhsStorage _lhs;
         RhsStorage _rhs;
     };
 
+    template <typename T>
+    inline constexpr bool is_scalar_v =
+        requires { typename std::decay_t<T>::is_scalar_expression; };
+
+    template <typename T, typename BinaryOp>
+    struct PointwisePolicy
+    {
+        static void ValidateDimensions(const auto& lhs, const auto& rhs)
+        {
+            if constexpr (!is_scalar_v<decltype(lhs)> && !is_scalar_v<decltype(rhs)>)
+                assert(lhs.Rows() == rhs.Rows() && lhs.Cols() == rhs.Cols());
+        }
+        static size_t GetRows(const auto& lhs, const auto& rhs)
+        {
+            return is_scalar_v<decltype(lhs)> ? rhs.Rows() : lhs.Rows();
+        }
+        static size_t GetCols(const auto& lhs, const auto& rhs)
+        {
+            return is_scalar_v<decltype(lhs)> ? rhs.Cols() : lhs.Cols();
+        }
+        static T Apply(const auto& lhs, const auto& rhs, size_t i, size_t j)
+        {
+            return BinaryOp{}(lhs(i, j), rhs(i, j));
+        }
+    };
+
+    struct MultiplicationPolicy
+    {
+        static void ValidateDimensions(const auto& lhs, const auto& rhs)
+        {
+            assert(lhs.Cols() == rhs.Rows());
+        }
+        static size_t GetRows(const auto& lhs, const auto& rhs) { return lhs.Rows(); }
+        static size_t GetCols(const auto& lhs, const auto& rhs) { return rhs.Cols(); }
+
+        static auto Apply(const auto& lhs, const auto& rhs, size_t i, size_t j)
+        {
+            using T = typename std::remove_cvref_t<decltype(lhs)>::value_type;
+            T sum{};
+            size_t k_count = lhs.Cols();
+            for (size_t k = 0; k < k_count; ++k)
+                sum += lhs(i, k) * rhs(k, j);
+            return sum;
+        }
+    };
+
     template <MatrixLike Lhs, MatrixLike Rhs>
-        requires std::same_as<typename std::decay_t<Lhs>::value_type,
-            typename std::decay_t<Rhs>::value_type>
     auto operator+(Lhs&& lhs, Rhs&& rhs)
     {
         using T = typename std::remove_cvref_t<Lhs>::value_type;
-        return MatrixBinaryOp<std::plus<T>, Lhs&&, Rhs&&>(
+        using Policy = PointwisePolicy<T, std::plus<T>>;
+        return MatrixExpression<Lhs&&, Rhs&&, Policy>(
             std::forward<Lhs>(lhs), std::forward<Rhs>(rhs));
     }
 
     template <MatrixLike Lhs, MatrixLike Rhs>
-        requires std::same_as<typename std::decay_t<Lhs>::value_type,
-            typename std::decay_t<Rhs>::value_type>
     auto operator-(Lhs&& lhs, Rhs&& rhs)
     {
         using T = typename std::remove_cvref_t<Lhs>::value_type;
-        return MatrixBinaryOp<std::minus<T>, Lhs&&, Rhs&&>(
+        using Policy = PointwisePolicy<T, std::minus<T>>;
+        return MatrixExpression<Lhs&&, Rhs&&, Policy>(
+            std::forward<Lhs>(lhs), std::forward<Rhs>(rhs));
+    }
+
+    template <MatrixLike Lhs, MatrixLike Rhs>
+    auto operator*(Lhs&& lhs, Rhs&& rhs)
+    {
+        return MatrixExpression<Lhs&&, Rhs&&, MultiplicationPolicy>(
             std::forward<Lhs>(lhs), std::forward<Rhs>(rhs));
     }
 
     template <MatrixLike Lhs, typename Rhs>
-        requires std::convertible_to<std::decay_t<Rhs>, typename std::decay_t<Lhs>::value_type>
+        requires std::convertible_to<std::decay_t<Rhs>,
+            typename std::remove_cvref_t<Lhs>::value_type>
     auto operator*(Lhs&& lhs, Rhs&& rhs)
     {
-        using T = typename std::decay_t<Lhs>::value_type;
+        using T = typename std::remove_cvref_t<Lhs>::value_type;
         using S = ScalarWrapper<T>;
-        return MatrixBinaryOp<std::multiplies<T>, Lhs&&, S>(
-            std::forward<Lhs>(lhs), S(static_cast<T>(rhs)));
+        using Policy = PointwisePolicy<T, std::multiplies<T>>;
+
+        return MatrixExpression<Lhs&&, S, Policy>(std::forward<Lhs>(lhs), S(static_cast<T>(rhs)));
     }
 
     template <typename Lhs, MatrixLike Rhs>
-        requires std::convertible_to<std::decay_t<Lhs>, typename std::decay_t<Rhs>::value_type>
+        requires std::convertible_to<std::decay_t<Lhs>,
+            typename std::remove_cvref_t<Rhs>::value_type>
     auto operator*(Lhs&& lhs, Rhs&& rhs)
     {
-        using T = typename std::decay_t<Rhs>::value_type;
+        using T = typename std::remove_cvref_t<Rhs>::value_type;
         using S = ScalarWrapper<T>;
-        return MatrixBinaryOp<std::multiplies<T>, S, Rhs&&>(
-            S(static_cast<T>(lhs)), std::forward<Rhs>(rhs));
-    }
+        using Policy = PointwisePolicy<T, std::multiplies<T>>;
 
-    template <MatrixLike Lhs, MatrixLike Rhs>
-        requires std::same_as<typename std::decay_t<Lhs>::value_type, typename std::decay_t<Rhs>::value_type>
-    auto operator*(Lhs&& lhs, Rhs&& rhs)
-    {
-        assert(lhs.cols() == rhs.rows());
-        using T = typename std::decay_t<Lhs>::value_type;
-        Matrix<T> result(lhs.rows(), rhs.cols());
-        
-        for (size_t i = 0; i < lhs.rows(); ++i)
-        {
-            for (size_t j = 0; j < rhs.cols(); ++j)
-            {
-                T sum = 0;
-                for (size_t k = 0; k < lhs.cols(); ++k)
-                    sum += lhs(i, k) * rhs(k, j);
-                result(i, j) = sum;
-            }
-        }
-        return result;
+        return MatrixExpression<S, Rhs&&, Policy>(S(static_cast<T>(lhs)), std::forward<Rhs>(rhs));
     }
 }  // namespace Algorithms::Math

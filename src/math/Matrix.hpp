@@ -276,7 +276,7 @@ namespace Algorithms::Math
 
     template <typename T>
     inline constexpr bool is_scalar_v =
-        requires { typename std::decay_t<T>::is_scalar_expression; };
+        requires { typename std::remove_cvref_t<T>::is_scalar_expression; };
 
     template <typename T, typename BinaryOp>
     struct PointwisePolicy

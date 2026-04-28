@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <math/Matrix.hpp>
 #include <math/Strassen.hpp>
 
 

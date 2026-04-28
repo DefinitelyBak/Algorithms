@@ -94,36 +94,36 @@ namespace Algorithms::Math
             auto B21 = B.Slice(mid, 0, mid, mid);
             auto B22 = B.Slice(mid, mid, mid, mid);
 
-            // S1-S10
-            makeTemp(sBase, 0, mid) = B12 - B22;
-            makeTemp(sBase, 1, mid) = A11 + A12;
-            makeTemp(sBase, 2, mid) = A21 + A22;
-            makeTemp(sBase, 3, mid) = B21 - B11;
-            makeTemp(sBase, 4, mid) = A11 + A22;
-            makeTemp(sBase, 5, mid) = B11 + B22;
-            makeTemp(sBase, 6, mid) = A12 - A22;
-            makeTemp(sBase, 7, mid) = B21 + B22;
-            makeTemp(sBase, 8, mid) = A11 - A21;
-            makeTemp(sBase, 9, mid) = B11 + B12;
+            auto S1 = makeTemp(sBase, 0, mid) = B12 - B22;
+            auto S2 = makeTemp(sBase, 1, mid) = A11 + A12;
+            auto S3 = makeTemp(sBase, 2, mid) = A21 + A22;
+            auto S4 = makeTemp(sBase, 3, mid) = B21 - B11;
+            auto S5 = makeTemp(sBase, 4, mid) = A11 + A22;
+            auto S6 = makeTemp(sBase, 5, mid) = B11 + B22;
+            auto S7 = makeTemp(sBase, 6, mid) = A12 - A22;
+            auto S8 = makeTemp(sBase, 7, mid) = B21 + B22;
+            auto S9 = makeTemp(sBase, 8, mid) = A11 - A21;
+            auto S10 = makeTemp(sBase, 9, mid) = B11 + B12;
 
-            // P1-P7
-            multiplyRecursive(makeTemp(pBase, 0, mid), A11, makeTemp(sBase, 0, mid), nextScratch);
-            multiplyRecursive(makeTemp(pBase, 1, mid), makeTemp(sBase, 1, mid), B22, nextScratch);
-            multiplyRecursive(makeTemp(pBase, 2, mid), makeTemp(sBase, 2, mid), B11, nextScratch);
-            multiplyRecursive(makeTemp(pBase, 3, mid), A22, makeTemp(sBase, 3, mid), nextScratch);
-            multiplyRecursive(makeTemp(pBase, 4, mid), makeTemp(sBase, 4, mid),
-                makeTemp(sBase, 5, mid), nextScratch);
-            multiplyRecursive(makeTemp(pBase, 5, mid), makeTemp(sBase, 6, mid),
-                makeTemp(sBase, 7, mid), nextScratch);
-            multiplyRecursive(makeTemp(pBase, 6, mid), makeTemp(sBase, 8, mid),
-                makeTemp(sBase, 9, mid), nextScratch);
+            auto P1 = makeTemp(pBase, 0, mid);
+            auto P2 = makeTemp(pBase, 1, mid);
+            auto P3 = makeTemp(pBase, 2, mid);
+            auto P4 = makeTemp(pBase, 3, mid);
+            auto P5 = makeTemp(pBase, 4, mid);
+            auto P6 = makeTemp(pBase, 5, mid);
+            auto P7 = makeTemp(pBase, 6, mid);
+            multiplyRecursive(P1, A11, S1, nextScratch);
+            multiplyRecursive(P2, S2, B22, nextScratch);
+            multiplyRecursive(P3, S3, B11, nextScratch);
+            multiplyRecursive(P4, A22, S4, nextScratch);
+            multiplyRecursive(P5, S5, S6, nextScratch);
+            multiplyRecursive(P6, S7, S8, nextScratch);
+            multiplyRecursive(P7, S9, S10, nextScratch);
 
-            C.Slice(0, 0, mid, mid) = makeTemp(pBase, 4, mid) + makeTemp(pBase, 3, mid) -
-                                      makeTemp(pBase, 1, mid) + makeTemp(pBase, 5, mid);
-            C.Slice(0, mid, mid, mid) = makeTemp(pBase, 0, mid) + makeTemp(pBase, 1, mid);
-            C.Slice(mid, 0, mid, mid) = makeTemp(pBase, 2, mid) + makeTemp(pBase, 3, mid);
-            C.Slice(mid, mid, mid, mid) = makeTemp(pBase, 4, mid) + makeTemp(pBase, 0, mid) -
-                                          makeTemp(pBase, 2, mid) - makeTemp(pBase, 6, mid);
+            C.Slice(0, 0, mid, mid) = P5 + P4 - P2 + P6;
+            C.Slice(0, mid, mid, mid) = P1 + P2;
+            C.Slice(mid, 0, mid, mid) = P2 + P4;
+            C.Slice(mid, mid, mid, mid) = P5 + P1 - P3 - P7;
         }
     };
 }

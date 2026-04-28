@@ -13,12 +13,12 @@ namespace Algorithms::Benchmarks
     static void BM_StandardMultiply(benchmark::State& state)
     {
         size_t n = state.range(0);
-        Math::Matrix<int> a = Common::CreateRandomMatrix(n, n);
-        Math::Matrix<int> b = Common::CreateRandomMatrix(n, n);
+        Math::Matrix<double> a = Common::CreateRandomMatrix(n, n); 
+        Math::Matrix<double> b = Common::CreateRandomMatrix(n, n);
 
         for (auto _ : state)
         {
-            Math::Matrix<int> res = a * b;
+            Math::Matrix<double> res = a * b;
             benchmark::DoNotOptimize(res);
         }
         state.SetComplexityN(n);
@@ -27,12 +27,12 @@ namespace Algorithms::Benchmarks
     static void BM_StrassenMultiply(benchmark::State& state)
     {
         size_t n = state.range(0);
-        Math::Matrix<int> a = Common::CreateRandomMatrix(n, n);
-        Math::Matrix<int> b = Common::CreateRandomMatrix(n, n);
+        Math::Matrix<double> a = Common::CreateRandomMatrix(n, n);
+        Math::Matrix<double> b = Common::CreateRandomMatrix(n, n);
 
         for (auto _ : state)
         {
-            Math::Matrix<int> res = Math::Strassen<int>::Multiply(a, b);
+            Math::Matrix<double> res = Math::Strassen<double>::Multiply(a, b);
             benchmark::DoNotOptimize(res);
         }
         state.SetComplexityN(n);

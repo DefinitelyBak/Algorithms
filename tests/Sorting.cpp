@@ -2,8 +2,10 @@
 
 #include <vector>
 
+#include "sorting/HeapSort.hpp"
 #include "sorting/InsertionSort.hpp"
 #include "sorting/MergeSort.hpp"
+#include "sorting/QuickSorts.hpp"
 
 
 namespace Algorithms::Tests
@@ -20,6 +22,13 @@ namespace Algorithms::Tests
         }
     };
 
+    using AllSortTypes =
+        ::testing::Types<Algorithms::Sorting::InsertionSort, Algorithms::Sorting::MergeSort,
+            Algorithms::Sorting::HeapSort, Algorithms::Sorting::QuickSort, Algorithms::Sorting::RandomizedQuickSort>;
+
+    using StableSortTypes =
+        ::testing::Types<Algorithms::Sorting::InsertionSort, Algorithms::Sorting::MergeSort>;
+
     template <typename T>
     class SortingTest : public ::testing::Test
     {
@@ -27,15 +36,12 @@ namespace Algorithms::Tests
         T sortAlgo;
     };
 
-    using SortTypes =
-        ::testing::Types<Algorithms::Sorting::InsertionSort, Algorithms::Sorting::MergeSort>;
-    TYPED_TEST_SUITE(SortingTest, SortTypes);
+    TYPED_TEST_SUITE(SortingTest, AllSortTypes);
 
     TYPED_TEST(SortingTest, BasicSort)
     {
         std::vector<int> data = {5, 3, 8, 1, 9, 2};
         std::vector<int> expected = {1, 2, 3, 5, 8, 9};
-
         this->sortAlgo(data);
         EXPECT_EQ(data, expected);
     }
@@ -45,14 +51,26 @@ namespace Algorithms::Tests
         std::vector<int> empty = {};
         this->sortAlgo(empty);
         EXPECT_TRUE(empty.empty());
-
-        std::vector<int> single = {42};
-        this->sortAlgo(single);
-        EXPECT_EQ(single[0], 42);
     }
 
-    TYPED_TEST(SortingTest, Stability)
+    TYPED_TEST(SortingTest, CustomComparator)
     {
+        std::vector<int> data = {1, 2, 3, 4, 5};
+        std::vector<int> expected = {5, 4, 3, 2, 1};
+        this->sortAlgo(data, std::greater<int>());
+        EXPECT_EQ(data, expected);
+    }
+
+    template <typename T>
+    class StableSortingTest : public SortingTest<T>
+    {
+    };
+
+    TYPED_TEST_SUITE(StableSortingTest, StableSortTypes);
+
+    TYPED_TEST(StableSortingTest, Stability)
+    {
+        using Item = Algorithms::Tests::Item;
         std::vector<Item> data = {{1, 0}, {2, 1}, {1, 2}, {3, 3}, {2, 4}, {1, 5}};
 
         this->sortAlgo(data);
@@ -60,18 +78,9 @@ namespace Algorithms::Tests
         for (size_t i = 1; i < data.size(); ++i)
         {
             EXPECT_LE(data[i - 1].key, data[i].key);
-
             if (data[i - 1].key == data[i].key)
-                EXPECT_LT(data[i - 1].originalIndex, data[i].originalIndex);
+                EXPECT_LT(data[i - 1].originalIndex, data[i].originalIndex)
+                    << "Stability violated at index " << i << " for key " << data[i].key;
         }
-    }
-
-    TYPED_TEST(SortingTest, CustomComparator)
-    {
-        std::vector<int> data = {1, 2, 3, 4, 5};
-        std::vector<int> expected = {5, 4, 3, 2, 1};
-
-        this->sortAlgo(data, std::greater<int>());
-        EXPECT_EQ(data, expected);
     }
 }

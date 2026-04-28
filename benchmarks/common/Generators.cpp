@@ -30,13 +30,13 @@ namespace Algorithms::Benchmarks::Common
         return result;
     }
 
-    Math::Matrix<int> CreateRandomMatrix(size_t rows, size_t cols)
+    Math::Matrix<double> CreateRandomMatrix(size_t rows, size_t cols)
     {
         static std::random_device rd;
         static std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(1, 10);
+        std::uniform_real_distribution<> dis(1.0, 10.0);
 
-        Math::Matrix<int> m(rows, cols);
+        Math::Matrix<double> m(rows, cols);
         for (size_t i = 0; i < rows; ++i)
             for (size_t j = 0; j < cols; ++j)
                 m(i, j) = dis(gen);

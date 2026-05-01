@@ -126,4 +126,4 @@ namespace Algorithms::Math
             C.Slice(mid, mid, mid, mid) = P5 + P1 - P3 - P7;
         }
     };
-}
+} // namespace Algorithms::Math

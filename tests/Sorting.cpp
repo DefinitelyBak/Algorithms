@@ -4,6 +4,7 @@
 
 #include "sorting/HeapSort.hpp"
 #include "sorting/InsertionSort.hpp"
+#include "sorting/LinearSorts.hpp"
 #include "sorting/MergeSort.hpp"
 #include "sorting/QuickSorts.hpp"
 
@@ -22,9 +23,9 @@ namespace Algorithms::Tests
         }
     };
 
-    using AllSortTypes =
-        ::testing::Types<Algorithms::Sorting::InsertionSort, Algorithms::Sorting::MergeSort,
-            Algorithms::Sorting::HeapSort, Algorithms::Sorting::QuickSort, Algorithms::Sorting::RandomizedQuickSort>;
+    using AllSortTypes = ::testing::Types<Algorithms::Sorting::InsertionSort,
+        Algorithms::Sorting::MergeSort, Algorithms::Sorting::HeapSort,
+        Algorithms::Sorting::QuickSort, Algorithms::Sorting::RandomizedQuickSort>;
 
     using StableSortTypes =
         ::testing::Types<Algorithms::Sorting::InsertionSort, Algorithms::Sorting::MergeSort>;

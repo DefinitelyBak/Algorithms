@@ -38,5 +38,5 @@ namespace Algorithms
             for (int64_t index = heapSize / 2 - 1; index >= 0; --index)
                 Heapify(elements, index, heapSize, comp);
         }
-    };
-}
+    }; // namespace Algorithms::Heap
+} // namespace Algorithms

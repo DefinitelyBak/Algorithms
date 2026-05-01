@@ -346,7 +346,7 @@ namespace Algorithms::Math
     }
 
     template <MatrixLike Lhs, typename Rhs>
-        requires std::convertible_to<std::decay_t<Rhs>,
+        requires std::convertible_to<std::remove_cvref_t<Rhs>,
             typename std::remove_cvref_t<Lhs>::value_type>
     auto operator*(Lhs&& lhs, Rhs&& rhs)
     {
@@ -358,7 +358,7 @@ namespace Algorithms::Math
     }
 
     template <typename Lhs, MatrixLike Rhs>
-        requires std::convertible_to<std::decay_t<Lhs>,
+        requires std::convertible_to<std::remove_cvref_t<Lhs>,
             typename std::remove_cvref_t<Rhs>::value_type>
     auto operator*(Lhs&& lhs, Rhs&& rhs)
     {

@@ -77,4 +77,4 @@ namespace Algorithms::Sorting
 
         std::mt19937 _gen{std::random_device{}()};
     };
-}
+} // namespace Algorithms::Sorting

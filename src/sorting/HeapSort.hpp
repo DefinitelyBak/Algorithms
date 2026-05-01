@@ -11,11 +11,11 @@ namespace Algorithms::Sorting
         void operator()(std::vector<T>& array, Compare comp = Compare()) const noexcept
         {
             Heap::BuildHeap(array, comp);
-            for (int64_t i = array.size() - 1; i > 0; --i)
+            for (size_t i = array.size(); i > 1; --i)
             {
-                std::swap(array[0], array[i]);
-                Heap::Heapify(array, 0, i, comp);
+                std::swap(array[0], array[i - 1]);
+                Heap::Heapify(array, 0, i - 1, comp);
             }
         }
     };
-}
+} // namespace Algorithms::Sorting

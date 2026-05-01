@@ -4,6 +4,7 @@
 #include "common/Generators.hpp"
 #include "sorting/HeapSort.hpp"
 #include "sorting/InsertionSort.hpp"
+#include "sorting/LinearSorts.hpp"
 #include "sorting/MergeSort.hpp"
 #include "sorting/QuickSorts.hpp"
 
@@ -119,13 +120,15 @@ namespace Algorithms::Benchmarks
         ->Range(8, 4096)
         ->Complexity(benchmark::oNSquared);
 
-    BENCHMARK_TEMPLATE(BM_SortingBenchmark, Algorithms::Sorting::RandomizedQuickSort, Distribution::Random)
+    BENCHMARK_TEMPLATE(
+        BM_SortingBenchmark, Algorithms::Sorting::RandomizedQuickSort, Distribution::Random)
         ->Name("BM_RandomizedQuickSort/Random")
         ->RangeMultiplier(2)
         ->Range(8, 4096)
         ->Complexity(benchmark::oNLogN);
 
-    BENCHMARK_TEMPLATE(BM_SortingBenchmark, Algorithms::Sorting::RandomizedQuickSort, Distribution::Sorted)
+    BENCHMARK_TEMPLATE(
+        BM_SortingBenchmark, Algorithms::Sorting::RandomizedQuickSort, Distribution::Sorted)
         ->Name("BM_RandomizedQuickSort/Sorted")
         ->RangeMultiplier(2)
         ->Range(8, 4096)
@@ -137,4 +140,24 @@ namespace Algorithms::Benchmarks
         ->RangeMultiplier(2)
         ->Range(8, 4096)
         ->Complexity(benchmark::oNLogN);
+
+    // Линейные
+    BENCHMARK_TEMPLATE(BM_SortingBenchmark, Algorithms::Sorting::RadixSort, Distribution::Random)
+        ->Name("BM_RadixSort/Random")
+        ->RangeMultiplier(2)
+        ->Range(8, 4096)
+        ->Complexity(benchmark::oN);
+
+    BENCHMARK_TEMPLATE(BM_SortingBenchmark, Algorithms::Sorting::RadixSort, Distribution::Sorted)
+        ->Name("BM_RadixSort/Sorted")
+        ->RangeMultiplier(2)
+        ->Range(8, 4096)
+        ->Complexity(benchmark::oN);
+
+    BENCHMARK_TEMPLATE(
+        BM_SortingBenchmark, Algorithms::Sorting::RadixSort, Distribution::ReverseSorted)
+        ->Name("BM_RadixSort/Reverse")
+        ->RangeMultiplier(2)
+        ->Range(8, 4096)
+        ->Complexity(benchmark::oN);
 }

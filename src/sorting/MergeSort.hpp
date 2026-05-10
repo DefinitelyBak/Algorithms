@@ -1,55 +1,64 @@
 #pragma once
+#include <algorithm>
+#include <iterator>
 
-#include <vector>
+#include "structures/Vector.hpp"
 
 
 namespace Algorithms::Sorting
 {
     struct MergeSort
     {
-        template <typename T, typename Compare = std::less<T>>
-        void operator()(std::vector<T>& array, Compare comp = Compare()) const
+        template <std::random_access_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void operator()(Iterator begin, Iterator end, Compare comp = Compare()) const
         {
-            std::vector<T> buffer(array.size());
-            sort(0, array.size(), array, buffer, comp);
+            const auto size = std::distance(begin, end);
+            if (size <= 1)
+                return;
+
+            using ValueType = std::iter_value_t<Iterator>;
+            Structures::Vector<ValueType> buffer(size);
+            sort(begin, end, buffer.begin(), comp);
         }
 
     private:
-        template <typename T, typename Compare>
-        void sort(size_t start, size_t end, std::vector<T>& array, std::vector<T>& buffer,
+        template <std::random_access_iterator Iterator, typename Compare>
+        void sort(Iterator begin, Iterator end, Iterator bufBegin, const Compare& comp) const
+        {
+            const auto size = std::distance(begin, end);
+            if (size <= 1)
+                return;
+
+            const auto mid = begin + size / 2;
+            const auto buf_mid = bufBegin + size / 2;
+
+            sort(begin, mid, bufBegin, comp);
+            sort(mid, end, buf_mid, comp);
+            merge(begin, mid, end, bufBegin, comp);
+        }
+
+        template <std::random_access_iterator Iterator, typename Compare>
+        void merge(Iterator begin, Iterator mid, Iterator end, Iterator bufBegin,
             const Compare& comp) const
         {
-            if (end - start <= 1)
-                return;
-            
-            size_t mid = start + (end - start) / 2;
+            auto left = begin;
+            auto right = mid;
+            auto it = bufBegin;
 
-            sort(start, mid, array, buffer, comp);
-            sort(mid, end, array, buffer, comp);
-            merge(start, mid, end, array, buffer, comp);
-        }
-
-        template <typename T, typename Compare>
-        void merge(size_t start, size_t mid, size_t end, std::vector<T>& array,
-            std::vector<T>& buffer, const Compare& comp) const
-        {
-            size_t i = start, j = mid, k = 0;
-
-            while (i < mid && j < end)
+            while (left < mid && right < end)
             {
-                if (!comp(array[j], array[i]))
-                    buffer[k++] = std::move(array[i++]);
+                if (comp(*right, *left))
+                    *it++ = std::move(*right++);
                 else
-                    buffer[k++] = std::move(array[j++]);
+                    *it++ = std::move(*left++);
             }
 
-            while (i < mid)
-                buffer[k++] = std::move(array[i++]);
-
-            while (j < end)
-                buffer[k++] = std::move(array[j++]);
-
-            std::move(buffer.begin(), buffer.begin() + k, array.begin() + start);
+            while (left < mid)
+                *it++ = std::move(*left++);
+            while (right < end)
+                *it++ = std::move(*right++);
+            std::move(bufBegin, it, begin);
         }
     };
-} // namespace Algorithms::Sorting
+}

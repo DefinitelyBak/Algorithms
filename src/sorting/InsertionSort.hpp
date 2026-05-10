@@ -7,20 +7,25 @@ namespace Algorithms::Sorting
 {
     struct InsertionSort
     {
-        template <typename T, typename Compare = std::less<T>>
-        void operator()(std::vector<T>& array, Compare comp = Compare()) const noexcept
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void operator()(Iterator begin, Iterator end, Compare comp = Compare()) const
         {
-            for (size_t i = 1; i < array.size(); ++i)
+            if (begin == end)
+                return;
+
+            for (auto it = std::next(begin); it != end; ++it)
             {
-                T key = array[i];
-                size_t j = i;
-                while (j > 0 && comp(key, array[j - 1]))
+                auto key = std::move(*it);
+                auto jt = it;
+
+                while (jt != begin && comp(key, *std::prev(jt)))
                 {
-                    array[j] = array[j - 1];
-                    --j;
+                    *jt = std::move(*std::prev(jt));
+                    --jt;
                 }
-                array[j] = key;
+                *jt = std::move(key);
             }
         }
     };
-} // namespace Algorithms::Sorting
+}  // namespace Algorithms::Sorting

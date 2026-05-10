@@ -19,6 +19,7 @@ add_executable(benchmarks ${benchmarksSrc})
 target_link_libraries(benchmarks benchmark::benchmark_main)
 
 set(testsSrc
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/Vector.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/Sorting.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/Matrix.cpp
 )

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <concepts>
 
 
 namespace Algorithms::Sorting
@@ -9,7 +9,7 @@ namespace Algorithms::Sorting
     {
         template <std::bidirectional_iterator Iterator,
             typename Compare = std::less<std::iter_value_t<Iterator>>>
-        void operator()(Iterator begin, Iterator end, Compare comp = Compare()) const
+        void operator()(Iterator begin, Iterator end, Compare comp = Compare()) const noexcept
         {
             if (begin == end)
                 return;

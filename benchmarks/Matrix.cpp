@@ -13,8 +13,8 @@ namespace Algorithms::Benchmarks
     static void BM_StandardMultiply(benchmark::State& state)
     {
         size_t n = state.range(0);
-        Math::Matrix<double> a = Common::CreateRandomMatrix(n, n); 
-        Math::Matrix<double> b = Common::CreateRandomMatrix(n, n);
+        auto a = Common::CreateRandomMatrix<double>(n, n); 
+        auto b = Common::CreateRandomMatrix<double>(n, n);
 
         for (auto _ : state)
         {
@@ -27,8 +27,8 @@ namespace Algorithms::Benchmarks
     static void BM_StrassenMultiply(benchmark::State& state)
     {
         size_t n = state.range(0);
-        Math::Matrix<double> a = Common::CreateRandomMatrix(n, n);
-        Math::Matrix<double> b = Common::CreateRandomMatrix(n, n);
+        auto a = Common::CreateRandomMatrix<double>(n, n);
+        auto b = Common::CreateRandomMatrix<double>(n, n);
 
         for (auto _ : state)
         {

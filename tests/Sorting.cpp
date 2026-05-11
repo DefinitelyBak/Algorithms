@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <vector>
+#include "structures/Vector.hpp"
 
 #include "sorting/HeapSort.hpp"
 #include "sorting/InsertionSort.hpp"
@@ -41,24 +41,24 @@ namespace Algorithms::Tests
 
     TYPED_TEST(SortingTest, BasicSort)
     {
-        std::vector<int> data = {5, 3, 8, 1, 9, 2};
-        std::vector<int> expected = {1, 2, 3, 5, 8, 9};
-        this->sortAlgo(data);
+        Structures::Vector<int> data = {5, 3, 8, 1, 9, 2};
+        Structures::Vector<int> expected = {1, 2, 3, 5, 8, 9};
+        this->sortAlgo(data.begin(), data.end());
         EXPECT_EQ(data, expected);
     }
 
     TYPED_TEST(SortingTest, EdgeCases)
     {
-        std::vector<int> empty = {};
-        this->sortAlgo(empty);
-        EXPECT_TRUE(empty.empty());
+        Structures::Vector<int> empty = {};
+        this->sortAlgo(empty.begin(), empty.end());
+        EXPECT_TRUE(empty.Empty());
     }
 
     TYPED_TEST(SortingTest, CustomComparator)
     {
-        std::vector<int> data = {1, 2, 3, 4, 5};
-        std::vector<int> expected = {5, 4, 3, 2, 1};
-        this->sortAlgo(data, std::greater<int>());
+        Structures::Vector<int> data = {1, 2, 3, 4, 5};
+        Structures::Vector<int> expected = {5, 4, 3, 2, 1};
+        this->sortAlgo(data.begin(), data.end(), std::greater<int>());
         EXPECT_EQ(data, expected);
     }
 
@@ -72,11 +72,11 @@ namespace Algorithms::Tests
     TYPED_TEST(StableSortingTest, Stability)
     {
         using Item = Algorithms::Tests::Item;
-        std::vector<Item> data = {{1, 0}, {2, 1}, {1, 2}, {3, 3}, {2, 4}, {1, 5}};
+        Structures::Vector<Item> data = {{1, 0}, {2, 1}, {1, 2}, {3, 3}, {2, 4}, {1, 5}};
 
-        this->sortAlgo(data);
+        this->sortAlgo(data.begin(), data.end());
 
-        for (size_t i = 1; i < data.size(); ++i)
+        for (size_t i = 1; i < data.Size(); ++i)
         {
             EXPECT_LE(data[i - 1].key, data[i].key);
             if (data[i - 1].key == data[i].key)

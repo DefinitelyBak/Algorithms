@@ -14,50 +14,70 @@ namespace Algorithms
 {
     namespace Auxiliary
     {
-        template <typename T, typename Compare = std::less<T>>
-        int64_t Partition(std::vector<T>& array, int64_t p, int64_t r, Compare comp)
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        Iterator Partition(Iterator begin, Iterator end, Compare comp = Compare{})
         {
-            const T& pivot = array[r];
-            int64_t i = p - 1;
-            for (int64_t j = p; j < r; ++j)
+            if (begin == end || std::next(begin) == end)
+                return begin;
+
+            auto pivotIt = std::prev(end);
+            const auto& pivot = *pivotIt;
+            auto i = begin;
+            for (auto j = begin; j != pivotIt; ++j)
             {
-                if (comp(array[j], pivot))
+                if (comp(*j, pivot))
                 {
+                    std::iter_swap(i, j);
                     ++i;
-                    std::swap(array[i], array[j]);
                 }
             }
-            std::swap(array[i + 1], array[r]);
-            return i + 1;
+            std::iter_swap(i, pivotIt);
+            return i;
         }
 
-        template <typename T, typename Compare = std::less<T>>
-        int64_t RandomizedPartition(
-            std::vector<T>& array, int64_t p, int64_t r, std::mt19937& gen, Compare comp)
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        Iterator RandomizedPartition(Iterator begin, Iterator end, std::mt19937& gen, Compare comp)
         {
-            std::uniform_int_distribution<int64_t> dist(p, r);
-            int64_t pivotIndex = dist(gen);
+            if (begin == end || std::next(begin) == end)
+                return begin;
+            auto n = std::distance(begin, end);
+            std::uniform_int_distribution<std::iter_difference_t<Iterator>> dist(0, n - 1);
 
-            std::swap(array[pivotIndex], array[r]);
-            return Partition(array, p, r, comp);
+            auto pivotIt = std::next(begin, dist(gen));
+            std::iter_swap(pivotIt, std::prev(end));
+            return Partition(begin, end, comp);
         }
 
-        template <typename T, typename Compare>
-        std::pair<size_t, size_t> PartitionAround(
-            std::span<T> array, const T& pivotValue, Compare comp)
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        std::pair<Iterator, Iterator> PartitionAround(
+            Iterator begin, Iterator end, const Iterator pivotIt, Compare comp = Compare{})
         {
-            size_t lt = 0;
-            size_t gt = array.size();
-            size_t i = 0;
+            if (begin == end)
+                return {begin, begin};
 
-            while (i < gt)
+            const auto pivot = *pivotIt;
+            auto lt = begin;
+            auto gt = end;
+            auto i = begin;
+
+            while (i != gt)
             {
-                if (comp(array[i], pivotValue))
-                    std::swap(array[lt++], array[i++]);
-                else if (comp(pivotValue, array[i]))
-                    std::swap(array[i], array[--gt]);
+                if (comp(*i, pivot))
+                {
+                    std::iter_swap(lt, i);
+                    ++lt;
+                    ++i;
+                }
+                else if (comp(pivot, *i))
+                {
+                    --gt;
+                    std::iter_swap(i, gt);
+                }
                 else
-                    i++;
+                    ++i;
             }
             return {lt, gt};
         }
@@ -69,9 +89,9 @@ namespace Algorithms
         inline size_t LeftChild(size_t index) { return index * 2 + 1; }
         inline size_t RightChild(size_t index) { return index * 2 + 2; }
 
-        template <typename T, typename Compare = std::less<T>>
-        void Heapify(
-            std::vector<T>& elements, size_t index, size_t heapSize, Compare comp = Compare())
+        template <std::random_access_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void Heapify(Iterator begin, size_t index, size_t heapSize, Compare comp = Compare{})
         {
             while (true)
             {
@@ -79,27 +99,42 @@ namespace Algorithms
                 size_t r = RightChild(index);
                 size_t interest = index;
 
-                if (l < heapSize && comp(elements[interest], elements[l]))
+                if (l < heapSize && comp(begin[interest], begin[l]))
                     interest = l;
-                if (r < heapSize && comp(elements[interest], elements[r]))
+                if (r < heapSize && comp(begin[interest], begin[r]))
                     interest = r;
 
                 if (interest == index)
                     break;
 
-                std::swap(elements[index], elements[interest]);
+                std::iter_swap(begin + index, begin + interest);
                 index = interest;
             }
         }
 
-        template <typename T, typename Compare = std::less<T>>
-        void BuildHeap(std::vector<T>& elements, Compare comp = Compare())
+        template <std::random_access_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void BuildHeap(Iterator begin, Iterator end, Compare comp = Compare{})
         {
-            if (elements.size() < 2)
+            const size_t n = std::distance(begin, end);
+            if (n < 2)
                 return;
-            const size_t heapSize = elements.size();
-            for (int64_t index = static_cast<int64_t>(heapSize) / 2 - 1; index >= 0; --index)
-                Heapify(elements, static_cast<size_t>(index), heapSize, comp);
+
+            for (int64_t i = static_cast<int64_t>(n) / 2 - 1; i >= 0; --i)
+                Heapify(begin, static_cast<size_t>(i), n, comp);
+        }
+
+        template <std::random_access_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void HeapSort(Iterator begin, Iterator end, Compare comp = Compare{})
+        {
+            BuildHeap(begin, end, comp);
+            size_t n = std::distance(begin, end);
+            for (size_t i = n - 1; i > 0; --i)
+            {
+                std::iter_swap(begin, begin + i);
+                Heapify(begin, 0, i, comp);
+            }
         }
     }  // namespace Heap
 }  // namespace Algorithms

@@ -10,7 +10,6 @@ include_directories(src)
 
 set(benchmarksSrc
     ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/common/Generators.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/common/Generators.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/Sorting.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/Matrix.cpp
 )

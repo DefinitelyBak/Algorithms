@@ -20,6 +20,12 @@ namespace Algorithms::Structures
 
         VectorIterator() : _ptr(nullptr) {}
         VectorIterator(pointer ptr) : _ptr(ptr) {}
+        template <typename U>
+        VectorIterator(const VectorIterator<U>& other)
+            requires std::convertible_to<U*, T*>
+            : _ptr(other.get_ptr())
+        {
+        }
 
         reference operator*() const { return *_ptr; }
         pointer operator->() { return _ptr; }
@@ -88,6 +94,8 @@ namespace Algorithms::Structures
         bool operator<=(const VectorIterator& other) const { return _ptr <= other._ptr; }
         bool operator>=(const VectorIterator& other) const { return _ptr >= other._ptr; }
 
+        pointer get_ptr() const { return _ptr; }
+
     private:
         pointer _ptr;
     };
@@ -131,7 +139,28 @@ namespace Algorithms::Structures
                 throw;
             }
         }
-        explicit Vector(size_type count) : Vector(count, T()) {}
+        explicit Vector(size_type count)
+            : _allocator(), _data(nullptr), _end(nullptr), _capacity(nullptr)
+        {
+            if (count == 0)
+                return;
+
+            reallocate(count);
+            try
+            {
+                for (size_type i = 0; i < count; ++i)
+                {
+                    std::allocator_traits<Allocator>::construct(
+                        _allocator, _data + i, value_type());
+                    _end++;
+                }
+            }
+            catch (...)
+            {
+                reallocate(0);
+                throw;
+            }
+        }
         template <class InputIt>
         explicit Vector(InputIt first, InputIt last, const Allocator& alloc = Allocator())
             : _allocator(alloc), _data(nullptr), _end(nullptr), _capacity(nullptr)
@@ -341,7 +370,7 @@ namespace Algorithms::Structures
                 else if (capacity == 1)
                     reallocate(2);
                 else
-                    reallocate(capacity * 1.5);
+                    reallocate(capacity + capacity / 2);
             }
         }
 
@@ -352,45 +381,56 @@ namespace Algorithms::Structures
             if (newCapacity == 0)
             {
                 Clear();
-                _allocator.deallocate(_data, Capacity());
+                if (_data)
+                    _allocator.deallocate(_data, Capacity());
                 _data = _end = _capacity = nullptr;
                 return;
             }
 
-            pointer newData = nullptr;
-            size_type currentSize = std::min(Size(), newCapacity);
-            size_type constructSize = 0;
+            pointer newData = _allocator.allocate(newCapacity);
+            size_type currentSize = Size();
+            size_type targetSize = std::min(currentSize, newCapacity);
+            size_type i = 0;
 
             try
             {
-                newData = _allocator.allocate(newCapacity);
-                for (; constructSize < currentSize; ++constructSize)
-                {
-                    std::allocator_traits<allocator_type>::construct(_allocator,
-                        newData + constructSize, std::move_if_noexcept(_data[constructSize]));
-                }
+                for (; i < targetSize; ++i)
+                    std::allocator_traits<Allocator>::construct(
+                        _allocator, newData + i, std::move_if_noexcept(_data[i]));
             }
             catch (...)
             {
-                while (constructSize > 0)
-                {
-                    --constructSize;
-                    std::allocator_traits<allocator_type>::destroy(
-                        _allocator, newData + constructSize);
-                }
+                for (size_type j = 0; j < i; ++j)
+                    std::allocator_traits<Allocator>::destroy(_allocator, newData + j);
                 _allocator.deallocate(newData, newCapacity);
                 throw;
             }
 
-            Clear();
-            _allocator.deallocate(_data, Capacity());
+            if (_data)
+            {
+                for (size_type j = 0; j < currentSize; ++j)
+                    std::allocator_traits<Allocator>::destroy(_allocator, _data + j);
+                _allocator.deallocate(_data, Capacity());
+            }
 
             _data = newData;
-            _end = newData + currentSize;
-            _capacity = newData + newCapacity;
+            _end = _data + targetSize;
+            _capacity = _data + newCapacity;
         }
 
         allocator_type _allocator;
         pointer _data, _end, _capacity;
     };
+
+    template <typename T, typename Allocator = std::allocator<T>>
+    bool operator==(const Vector<T, Allocator>& lhs, const Vector<T, Allocator>& rhs) noexcept
+    {
+        const auto n = lhs.Size(); 
+        if (n != rhs.Size())
+            return false;
+        for (size_t i = 0; i < n; ++i)
+            if (lhs[i] != rhs[i])
+            return false;
+        return true;
+    }
 }

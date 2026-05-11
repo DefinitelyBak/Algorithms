@@ -1,4 +1,5 @@
 #pragma once
+
 #include <algorithm>
 #include <iterator>
 
@@ -61,4 +62,4 @@ namespace Algorithms::Sorting
             std::move(bufBegin, it, begin);
         }
     };
-}
+}  // namespace Algorithms::Sorting

@@ -2,7 +2,6 @@
 
 #include <cstddef>
 #include <random>
-#include <vector>
 
 #include "Common.hpp"
 
@@ -11,43 +10,47 @@ namespace Algorithms::Sorting
 {
     struct QuickSort
     {
-        template <typename T, typename Compare = std::less<T>>
-        void operator()(std::vector<T>& array, Compare comp = Compare()) noexcept
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void operator()(Iterator begin, Iterator end, Compare comp = Compare()) const noexcept
         {
-            quickSort<T, Compare>(array, 0, array.size() - 1, comp);
+            quickSort(begin, end, comp);
         }
 
     private:
-        template <typename T, typename Compare = std::less<T>>
-        void quickSort(std::vector<T>& array, int64_t p, int64_t r, Compare& comp)
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void quickSort(Iterator begin, Iterator end, Compare& comp) const noexcept
         {
-            if (p < r)
-            {
-                const int64_t q = Auxiliary::Partition<T, Compare>(array, p, r, comp);
-                quickSort<T, Compare>(array, p, q - 1, comp);
-                quickSort<T, Compare>(array, q + 1, r, comp);
-            }
+            if (begin == end || std::next(begin) == end)
+                return;
+
+            const auto q = Auxiliary::Partition(begin, end, comp);
+            quickSort(begin, q, comp);
+            quickSort(std::next(q), end, comp);
         }
     };
 
     struct RandomizedQuickSort
     {
-        template <typename T, typename Compare = std::less<T>>
-        void operator()(std::vector<T>& array, Compare comp = Compare()) noexcept
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void operator()(Iterator begin, Iterator end, Compare comp = Compare()) noexcept
         {
-            randomizedQuickSort<T, Compare>(array, 0, array.size() - 1, comp);
+            randomizedQuickSort(begin, end, comp);
         }
 
     private:
-        template <typename T, typename Compare = std::less<T>>
-        void randomizedQuickSort(std::vector<T>& array, int64_t p, int64_t r, Compare& comp)
+        template <std::bidirectional_iterator Iterator,
+            typename Compare = std::less<std::iter_value_t<Iterator>>>
+        void randomizedQuickSort(Iterator begin, Iterator end, Compare& comp)
         {
-            if (p < r)
-            {
-                const int64_t q = Auxiliary::RandomizedPartition<T, Compare>(array, p, r, _gen, comp);
-                randomizedQuickSort<T, Compare>(array, p, q - 1, comp);
-                randomizedQuickSort<T, Compare>(array, q + 1, r, comp);
-            }
+            if (begin == end || std::next(begin) == end)
+                return;
+
+            const auto q = Auxiliary::RandomizedPartition(begin, end, _gen, comp);
+            randomizedQuickSort(begin, q, comp);
+            randomizedQuickSort(std::next(q), end, comp);
         }
 
         std::mt19937 _gen{std::random_device{}()};
